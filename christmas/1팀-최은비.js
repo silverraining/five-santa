@@ -8,10 +8,25 @@
 export default {
   name: "최은비",
   play: async (getSanta) => {
-    const end = Date.now() + 999;
-    const interval = setInterval(() => {
-      for (let i = 0; i < 100; i++) getSanta();
-      if (Date.now() >= end) clearInterval(interval);
-    }, 500);
+    const endTime = Date.now() + 999;
+    
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Create an async function for Santa catching
+    const catchSantas = async () => {
+      const interval = setInterval(() => {
+      
+        for (let i = 0; i < 100; i++) {
+          if (Date.now() < endTime) {
+            getSanta();
+          }
+        }
+        if (Date.now() >= endTime) {
+          clearInterval(interval);
+        }
+      }, 500);
+    };
+
+    await catchSantas();
   }
 };
