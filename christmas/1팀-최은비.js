@@ -8,7 +8,7 @@
 export default {
   name: "최은비",
   play: async (getSanta) => {
-    const end = Date.now() + 5000;
+    const end = Date.now() + 999;
     const interval = setInterval(() => {
       for (let i = 0; i < 100; i++) getSanta();
       if (Date.now() >= end) clearInterval(interval);
